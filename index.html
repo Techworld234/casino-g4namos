@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WhatsApp Contacto</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {margin:0;padding:0;box-sizing:border-box}
+    body {
+      font-family:'Poppins',sans-serif;
+      background: url('fondo.webp') no-repeat center center fixed;
+      background-size: cover;
+      color:#111;
+      display:flex;flex-direction:column;align-items:center;
+      justify-content:flex-start;height:100vh;overflow:hidden;
+      position:relative;padding:10px;
+    }
+    header {
+      margin-top:2vh;display:flex;
+      flex-direction:column;align-items:center;gap:5px;
+    }
+    .whatsapp-logo {width:12vw;max-width:40px;}
+    .logo-circle {
+      width:25vw;max-width:100px;height:25vw;max-height:100px;
+      border-radius:50%;object-fit:cover;
+      box-shadow:0 4px 15px rgba(0,0,0,0.2);
+      animation:pulseG 2.5s ease-in-out infinite;
+    }
+    @keyframes pulseG {
+      0%,100%{transform:scale(1); }
+      50%{transform:scale(1.05); }
+    }
+    .verified {margin-top:8px;text-align:center;}
+    .verified h2, .verified p {
+      font-weight:700;font-size:0.95rem;color:#fff;line-height:1.3;
+      text-shadow:1px 1px 3px rgba(0,0,0,0.7);
+    }
+    .whatsapp-button {
+      margin:180px auto 30px;padding:12px 20px;
+      background-color:#25D366;color:white;
+      font-size:1rem;font-weight:700;border:none;
+      border-radius:40px;cursor:pointer;
+      display:flex;align-items:center;gap:10px;
+      transition:transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow:0 0 15px rgba(37,211,102,0.6);
+      text-decoration:none;width:90%;justify-content:center;
+      max-width:400px;z-index:10;animation:pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0%{transform:scale(1);box-shadow:0 0 15px rgba(37,211,102,0.6);}
+      50%{transform:scale(1.05);box-shadow:0 0 25px rgba(37,211,102,0.9);}
+      100%{transform:scale(1);box-shadow:0 0 15px rgba(37,211,102,0.6);}
+    }
+    .whatsapp-button img {width:22px;height:22px;}
+    .floating-comment {
+      position:fixed;top:10px;left:10px;
+      background:rgba(0,0,0,0.75);color:white;
+      padding:10px 20px;border-radius:15px;
+      font-size:0.85rem;box-shadow:0 2px 10px rgba(0,0,0,0.3);
+      text-align:left;animation:fadeLoop 4.5s infinite;
+      z-index:1000;
+    }
+    @keyframes fadeLoop {
+      0%,100%{opacity:0;}
+      5%,30%{opacity:1;}
+      35%,100%{opacity:0;}
+    }
+    .bonus-banner {
+      position:fixed;bottom:0;width:100%;
+      background-color:#00c853;color:white;
+      text-align:center;padding:10px;
+      font-weight:600;font-size:0.95rem;z-index:999;
+    }
+    .decorative {
+      position:absolute;top:-50px;right:-50px;
+      width:150px;height:150px;
+      background:radial-gradient(circle, rgba(37,211,102,0.2), transparent 70%);
+      border-radius:50%;z-index:0;
+    }
+  </style>
+</head>
+<body>
+  <div class="decorative"></div>
+  <header>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="whatsapp-logo">
+    <img src="logo.png" alt="Logo" class="logo-circle">
+  </header>
+  <div class="verified">
+    <h2>✅ PLATAFORMA VERIFICADA</h2>
+    <p>✅ ATENCIÓN 24HS</p>
+  </div>
+  <a href="https://wa.me/3518633307?text=%C2%A1Hola%2C%20quiero%20m%C3%A1s%20informaci%C3%B3n%21" target="_blank" class="whatsapp-button">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    Contactar por WhatsApp
+  </a>
+  <div class="bonus-banner">🎁 BONO ACTIVO - ¡Solicítalo ahora por WhatsApp!</div>
+  <div class="floating-comment" id="notificacion">💬</div>
+  <script>
+    const notificaciones = [
+      '💬 🎁 <strong>Veronica Funes</strong><br><span style="color: #00e5ff">Cobré sin problemas 😍</span><br>📍 Desde Tucumán · hace 10 minutos',
+      '💬 🎁 <strong>Andrea Reartes</strong><br><span style="color: #00e5ff">Premio PAGADO$$</span><br>📍 Desde Buenos Aires · hace 1 hora',
+      '💬 🎁 <strong>Claudio Romero</strong><br><span style="color: #00e5ff">Excelente atención</span><br>📍 Desde Córdoba · hace 2 horas',
+      '💬 🎁 <strong>Gustavo Salva</strong><br><span style="color: #00e5ff">Me pagaron enseguida!!</span><br>📍 Desde Mendoza · hace 3 horas',
+      '💬 🎁 <strong>Sofía Díaz</strong><br><span style="color: #00e5ff">Premio PAGADO$$</span><br>📍 Desde Rosario · hace 45 minutos',
+      '💬 🎁 <strong>Diego Méndez</strong><br><span style="color: #00e5ff">100% confiable y rápido</span><br>📍 Desde Salta · hace 30 minutos'
+    ];
+    let index = 3;
+    const notif = document.getElementById('notificacion');
+    function rotarNotificacion() {
+      notif.innerHTML = notificaciones[index];
+      index = (index + 1) % notificaciones.length;
+    }
+    rotarNotificacion();
+    setInterval(rotarNotificacion, 4500);
+  </script>
+</body>
+</html>
